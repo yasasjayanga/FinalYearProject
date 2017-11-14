@@ -1,0 +1,43 @@
+﻿@model PostDetailViewModel
+@{
+    var postId = Model.Post.Id;
+    var loggedOnUserId = User.Identity.Name;
+    var isAdmin = User.IsInRole("admin");
+}
+
+<div style="position:relative;">
+    <div class="item-title">
+        <div class="item-date">
+            @Model.Post.DateCreated.Day <span>@Model.Post.DateCreated.ToString("MMM")</span>
+        </div>
+    </div>
+    <div style="padding-left:72px;">
+        <p style="padding:0;">
+            @Html.Raw(Model.Post.PostContent)
+        </p>
+        @if (User.Identity.Name != null)
+        {
+            @if (Model.Post.AspNetUser.UserName == loggedOnUserId && !Model.Post.Topic.Solved)
+            {
+                <div style="float: right;">
+                    <a class="btn btn-default" href="@Url.Action("Edit", "Forums", new { id = Model.Post.Id })" title="EDIT">
+                        Edit
+                    </a>
+                    <a class="btn btn-default" onclick="return confirm('DeleteConfirmation')" href="@Url.Action("DeletePost", "Forums", new { id = Model.Post.Topic_Id, postId = Model.Post.Id })" title="DELETE">
+                        Delete
+                    </a>
+
+                </div>
+            }
+        }
+        <span class="label label-default light">
+            @Html.Raw((Model.Post.AspNetUser.UserName)) SAYS: @DatesUI.GetPrettyDate(Model.Post.DateCreated.ToString())
+            Posted This
+        </span>
+        @if (Model.Post.DateEdited > Model.Post.DateCreated)
+        {
+            <span class="label label-default light">LastEdited  @DatesUI.GetPrettyDate(Model.Post.DateEdited.ToString())</span>
+        }
+
+    </div>
+</div>

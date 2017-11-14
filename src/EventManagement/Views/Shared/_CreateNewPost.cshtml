@@ -1,0 +1,19 @@
+﻿
+@model CreateAjaxPostViewModel
+<div id="createpostholder">
+    @using (Html.BeginForm("CreatePost", "Forums", null, FormMethod.Post, null, new { @id = "postcodeform" }))
+    {
+        <div class="form-group">
+            <div class="col-sm-12">
+                @Html.TextAreaFor(x => x.PostContent, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.PostContent)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <input type="submit" id="createpostbutton" class="btn btn-primary" value="Add Post" />
+            </div>
+        </div>
+        @Html.HiddenFor(x => x.Topic)
+    }
+</div>

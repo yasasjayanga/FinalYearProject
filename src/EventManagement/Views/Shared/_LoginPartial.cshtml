@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using EventManagement.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+        <a asp-controller="Account" asp-action="ManageProfile"><b style="color:#f07057;">Hello @UserManager.GetUserName(User)!</b></a>
+        @*<a href="#"><b>Hello @UserManager.GetUserName(User)!</b></a>*@
+        <a class="log-off" href="#">Log off</a>
+        @*<ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                </li>
+                <li>
+                    <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+                </li>
+            </ul>*@
+    </form>
+}
+else
+{
+    <a id="quick_sign_in" asp-controller="Account" asp-action="Login">
+        <i class="fa fa-sign-in"></i><span class="hidden-xs"> Sign In</span>
+    </a>
+    <a id="quick_sign_in" asp-controller="Account" asp-action="Register">
+        <i class="fa fa-users"></i><span class="hidden-xs"> Sign Up</span>
+    </a>
+    @*<ul class="nav navbar-nav navbar-right">
+            <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+            <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
+        </ul>*@
+}
+
+
+<script>
+    $(function () {
+        $('.log-off').click(function () {
+            $('#logoutForm').submit();
+        });
+    });
+</script>

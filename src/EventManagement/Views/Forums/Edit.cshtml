@@ -1,0 +1,70 @@
+﻿@model CreateEditTopicView_Model
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<header id="page-title">
+    <div class="container">
+        <h1>Edit Forums</h1>
+
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Edit Forums</li>
+        </ul>
+    </div>
+</header>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="createtopicholder">
+            @using (Html.BeginForm("Edit", "Forums", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.ValidationSummary(false)
+                @Html.AntiForgeryToken()
+                @Html.Partial("_CreateEdit_TopicPost", Model)
+            }
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .nicdark_margintop45_negative {
+        margin-top: 140px !important;
+    }
+
+    .nicdark_space50 {
+        height: 0;
+    }
+
+    .form-group b {
+        font-family: 'Raleway', sans-serif;
+    }
+</style>
+
+@section Scripts {
+    <script src="~/js/tinymce/tinymce.js"></script>
+    <script>
+        tinymce.init({
+            selector: "textarea",
+            theme: "modern",
+            plugins: [
+                 "advlist autolink link lists charmap print preview hr anchor pagebreak",
+                 "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime nonbreaking",
+                 "save table contextmenu directionality emoticons template paste textcolor"
+            ],
+            content_css: "css/content.css",
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | print preview fullpage | forecolor backcolor emoticons",
+            //style_formats: [
+            //     { title: 'Bold text', inline: 'b' },
+            //     { title: 'Red text', inline: 'span', styles: { color: '#ff0000' } },
+            //     { title: 'Red header', block: 'h1', styles: { color: '#ff0000' } },
+            //     { title: 'Example 1', inline: 'span', classes: 'example1' },
+            //     { title: 'Example 2', inline: 'span', classes: 'example2' },
+            //     { title: 'Table styles' },
+            //     { title: 'Table row 1', selector: 'tr', classes: 'tablerow1' }
+            //]
+        });
+    </script>
+}

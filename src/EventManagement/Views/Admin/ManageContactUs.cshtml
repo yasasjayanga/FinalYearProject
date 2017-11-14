@@ -1,0 +1,151 @@
+﻿@model IEnumerable<ContactViewModel>
+@{
+    ViewData["Title"] = "Manage Contacts";
+}
+
+
+<div id="shop">
+
+    <!-- PAGE TITLE -->
+    <header id="page-title">
+        <div class="container">
+            <h1>Manage Contacts</h1>
+
+            <ul class="breadcrumb">
+                <li><a href="index.html">Admin</a></li>
+                <li class="active">Manage Contacts</li>
+            </ul>
+        </div>
+    </header>
+
+
+    <div class="col-md-offset-2 col-md-8">
+        <table id="UserTable" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Phone</td>
+                    <td>Subject</td>
+                    <td>Message</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tbody>
+                    <tr id="row-@item.Id">
+                        <td>@item.FullName</td>
+                        <td>@item.Email</td>
+                        <td>
+                            @item.Phone
+                        </td>
+                        <td>@item.Subject</td>
+                        <td>@item.Message</td>
+                        <td>
+                            <input id="@item.Id" type="button" class="btn btn-sm btn-danger" value="Delete" onclick="DeleteContactInfo('@item.Id')" />
+                            <input id="@item.Id" type="button" class="btn btn-sm btn-warning" value="Detail" onclick="GetContactInfo('@item.Id')" />
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    </div>
+
+</div>
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Contact Detail</h4>
+            </div>
+            <div class="modal-body user-modal">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script>
+        $(function () {
+            $('#UserTable').DataTable();
+        });
+        function DeleteContactInfo(contactId) {
+            if (confirm("Do you want to delete selected contact?")) {
+                location.href = "/Admin/DeleteContactInfo/" + contactId;
+            }
+        }
+
+        function GetContactInfo(contactId) {
+            $.get("/Admin/GetContactInfo", { contactId: contactId }, function (result) {
+
+                $(".user-modal").loadTemplate('/templates/contact_Detail.html', result);
+                $('#myModal').modal('show');
+
+            });
+        }
+
+        function getEventType(status) {
+            //1: Non-commercial 2: Commercial
+            if (status == 1) {
+                return 'Non-commercial';
+            }
+            if (status == 2) {
+                return 'Commercial';
+            }
+        }
+
+        function getstatus(status) {
+            //1: Pending, 2: Approve, 3: Disapprove
+            if (status == 1) {
+                return 'Pending';
+            }
+            if (status == 2) {
+                return 'Approved';
+            }
+            if (status == 3) {
+                return 'Disapproved';
+            }
+        }
+
+        function extend(obj, src) {
+            for (var key in src) {
+                if (src.hasOwnProperty(key)) obj[key] = src[key];
+            }
+            return obj;
+        }
+
+        //1: Pending, 2: Approve, 3: Disapprove
+        function openStatusModal(status, eventId) {
+            $('#Popup-Status').val(status);
+            $('#Popup-EventId').val(eventId);
+            $('#txt-status').html((status == 2) ? 'Approve' : 'Disapprove');
+            $('#popup-disapprove').hide();
+            if (status == 3) {
+                $('#popup-disapprove').show();
+            }
+            $('#StatusModal').modal('show');
+        }
+
+        function UpdateEventStatus() {
+            var eventId = $('#Popup-EventId').val();
+            $.post("/Admin/UpdateEventStatus", { status: $('#Popup-Status').val(), eventId: eventId, comment: $('#Popup-Description').val() }, function (result) {
+                $('#row-' + eventId).find('td .status').html((result == 2) ? 'Approved' : 'Disapproved');
+                $('#StatusModal').modal('hide');
+            });
+        }
+    </script>
+}

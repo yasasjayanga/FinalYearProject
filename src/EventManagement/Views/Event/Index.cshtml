@@ -1,0 +1,195 @@
+﻿@model IEnumerable<EventModel>
+@{
+    ViewData["Title"] = "Manage Events";
+}
+
+
+<div id="shop">
+
+    <!-- PAGE TITLE -->
+    <header id="page-title">
+        <div class="container">
+            <div class="col-md-6">
+                <h1>Manage Events</h1>
+
+                <ul class="breadcrumb">
+                    <li><a href="index.html">Admin</a></li>
+                    <li class="active">Manage Events</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="col-md-offset-2 col-md-8">
+        @*<div class="col-md-6">
+            <a class="btn btn-primary pull-right" style="margin-top:20px;" asp-controller="Event" asp-action="Create">Add Event</a>
+        </div>
+        <div class="clearfix"></div>*@
+        <table id="UserTable" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <td>Event Id</td>
+                    <td>Event Type</td>
+                    <td>Tickets</td>
+                    <td>Date time</td>
+                    @*<td>Venue</td>
+                        <td>Description</td>*@
+                    @*<td>Poster</td>*@
+                    <td>Status</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tbody>
+                    <tr id="row-@item.Id">
+                        <td>@item.Number</td>
+                        <td>
+                            @{
+                                if (item.Type == 1)
+                                {<span>Non-commercial</span> }
+                                else
+                                { <span>Commercial</span> }
+                            }
+                        </td>
+                        <td>@item.Tickets</td>
+                        <td>@item.Date</td>
+                        @*<td>@item.Venue</td>
+                            <td>@item.Description</td>*@
+                        @*<td>
+                                @{
+                                    if (string.IsNullOrEmpty(item.Poster))
+                                    { <b>No image available</b> }
+                                    else
+                                    { <img src="@item.Poster" alt="Poster" /> }
+                                }
+                            </td>*@
+                        <td>
+                            @{
+                                if (item.Status == 1)
+                                { <span class="status">Pending</span> }
+                                else if (item.Status == 2)
+                                {<span class="status">Approved</span> }
+                                else if (item.Status == 3)
+                                { <span class="status">Disapproved</span>}
+                            }
+                        </td>
+                        <td>
+                            @*1: Pending, 2: Approve, 3: Disapprove*@
+                            <a class="btn btn-sm btn-primary" href="/Event/Edit/@item.Id">Edit</a>
+                            <input id="@item.Id" type="button" class="btn btn-sm btn-info" value="Detail" onclick="GetUserEventInfo('@item.UserId', '@item.Id')" />
+                            <input id="@item.Id" type="button" class="btn btn-sm btn-danger" value="Delete" onclick="DeleteUser('@item.Id')" />
+                        </td>
+                    </tr>
+                </tbody>
+                                }
+        </table>
+    </div>
+
+</div>
+
+<div id="StatusModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Update Event Status</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="Popup-Status" value="" />
+                <input type="hidden" id="Popup-EventId" value="" />
+                <div>
+                    <p>Do you want to <span id="txt-status"></span> this event?</p>
+                </div>
+                <div id="popup-disapprove">
+                    <div><b>Comment:</b></div>
+                    <textarea id="Popup-Description" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="UpdateEventStatus()">Submit</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Event Detail</h4>
+            </div>
+            <div class="modal-body user-modal">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script>
+        $(function () {
+            $('#UserTable').DataTable();
+        });
+        function DeleteUser(userId) {
+            if (confirm("Do you want to delete selected event?")) {
+                location.href = "/Event/DeleteEvent/" + userId;
+            }
+        }
+
+        function GetUserEventInfo(userId, eventId) {
+            $.get("/Event/GetEventById", { eventId: eventId }, function (event_result) {
+                //1: Pending, 2: Approve, 3: Disapprove
+                event_result.Type = getEventType(event_result.Type);
+                event_result.Status = getstatus(event_result.Status);
+                $(".user-modal").loadTemplate('/templates/event_detail.html', (event_result));
+                $('#myModal').modal('show');
+            });
+        }
+
+        function getEventType(status) {
+            //1: Non-commercial 2: Commercial
+            if (status == 1) {
+                return 'Non-commercial';
+            }
+            if (status == 2) {
+                return 'Commercial';
+            }
+        }
+
+        function getstatus(status) {
+            //1: Pending, 2: Approve, 3: Disapprove
+            if (status == 1) {
+                return 'Pending';
+            }
+            if (status == 2) {
+                return 'Approved';
+            }
+            if (status == 3) {
+                return 'Disapproved';
+            }
+        }
+
+        function extend(obj, src) {
+            for (var key in src) {
+                if (src.hasOwnProperty(key)) obj[key] = src[key];
+            }
+            return obj;
+        }
+
+        function UpdateEventStatus() {
+            var eventId = $('#Popup-EventId').val();
+            $.post("/Admin/UpdateEventStatus", { status: $('#Popup-Status').val(), eventId: eventId, comment: $('#Popup-Description').val() }, function (result) {
+                $('#row-' + eventId).find('td .status').html((result == 2) ? 'Approved' : 'Disapproved');
+                $('#StatusModal').modal('hide');
+            });
+        }
+    </script>
+}

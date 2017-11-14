@@ -1,0 +1,131 @@
+﻿<!-- TOP NAV -->
+<header id="topNav" class="topHead">
+    <!-- remove class="topHead" if no topHead used! -->
+    <div class="container">
+
+        <!-- Mobile Menu Button -->
+        <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+            <i class="fa fa-bars"></i>
+        </button>
+
+        <!-- Logo text or image -->
+        <a class="logo" asp-controller="Home" asp-action="Index">
+            SL-NZ Friends
+            @*<img src="~/images/new-logo.png" alt="Event Management" style="height:60px;" />*@
+        </a>
+
+        <!-- Top Nav -->
+        <div class="navbar-collapse nav-main-collapse collapse pull-right">
+            <nav class="nav-main mega-menu">
+                <ul class="nav nav-pills nav-main scroll-menu" id="topMain">
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="Home" asp-action="Gallery">
+                            Gallery
+                        </a>
+                    </li>
+
+                    @{
+                        var role = User.IsInRole("admin");
+                        if (role)
+                        {
+                            <li>
+                                <a asp-controller="Home" asp-action="InformationLink">
+                                    Information Link
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#">
+                                    Admin Pages <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a asp-controller="Admin" asp-action="ManageUsers">Manage Users</a>
+                                    </li>
+                                    <li>
+                                        <a asp-controller="Admin" asp-action="ManageEvents">Manage Events</a>
+                                    </li>
+                                    <li>
+                                        <a asp-controller="Admin" asp-action="Forums">Manage Forums</a>
+                                    </li>
+                                    <li>
+                                        <a asp-controller="Admin" asp-action="ManageContactUs">Manage Contacts</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else if (User.IsInRole("user"))
+                        {
+                            <li>
+                                <a asp-controller="Home" asp-action="InformationLink">
+                                    Information Link
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#">
+                                    Manage Events <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-controller="Event" asp-action="Index">Events</a></li>
+                                    <li><a asp-controller="Event" asp-action="Create">Create Event</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#">
+                                    Manage Forums <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-controller="Forums" asp-action="Index">Forums</a></li>
+                                    <li><a asp-controller="Forums" asp-action="Create">Create Forum</a></li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a asp-controller="Forums" asp-action="Index">
+                                    Forums
+                                </a>
+                            </li>
+                        }
+                    }
+
+                    <li>
+                        <a asp-controller="Home" asp-action="About">
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="Contact">
+                            Contact US
+                        </a>
+                    </li>
+
+                    <!-- GLOBAL SEARCH -->
+                    <li class="search">
+                        <!-- search form -->
+                        <form method="get" action="#" class="input-group pull-right">
+                            <input type="text" class="form-control" name="k" id="k" value="" placeholder="Search">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary notransition"><i class="fa fa-search"></i></button>
+                            </span>
+                        </form>
+                        <!-- /search form -->
+                    </li>
+                    <!-- /GLOBAL SEARCH -->
+
+                </ul>
+            </nav>
+        </div>
+        <!-- /Top Nav -->
+
+    </div>
+</header>
+
+<span id="header_shadow"></span>
+<!-- /TOP NAV -->

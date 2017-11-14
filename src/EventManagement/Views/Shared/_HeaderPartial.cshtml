@@ -1,0 +1,92 @@
+﻿<!-- Available classes for body: boxed , pattern1...pattern10 . Background Image - example add: data-background="~/images/boxed_background/1.jpg"  -->
+<!-- Top Bar -->
+<header id="topHead">
+    <div class="container">
+
+        <!-- PHONE/EMAIL -->
+        <span class="quick-contact pull-left">
+            <i class="fa fa-phone"></i> 1800-555-1234 
+            @*&bull;<a class="hidden-xs" href="mailto:mail@yourdomain.com">mail@domain.com</a>*@
+        </span>
+        <!-- /PHONE/EMAIL -->
+        <!-- LANGUAGE -->
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="btn-group pull-right hidden-xs">
+                <button class="dropdown-toggle language" type="button" data-toggle="dropdown">
+                    Manage Account <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu">
+                    <li>
+                        <a asp-controller="Account" asp-action="ManageProfile">
+                            <i class="fa fa-sign-in"></i> &nbsp;&nbsp;
+                             Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Manage" asp-action="ChangePassword">
+                            <i class="fa fa-key"></i> &nbsp;&nbsp;
+                             Change Password
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        }
+        <!-- /LANGUAGE -->
+        <!-- SIGN IN -->
+        <div class="pull-right nav signin-dd">
+            @await Html.PartialAsync("_LoginPartial")
+
+            @*<div class="dropdown-menu" role="menu" aria-labelledby="quick_sign_in">
+
+                    <h4>Sign In</h4>
+                    <form action="page-signin.html" method="post" role="form">
+
+                        <div class="form-group">
+                            <input required type="email" class="form-control" placeholder="Username or email">
+                        </div>
+
+                        <div class="input-group">
+
+                            <input required type="password" class="form-control" placeholder="Password">
+
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary">Sign In</button>
+                            </span>
+
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Remember me &bull; <a href="page-signin.html">Forgot password?</a>
+                            </label>
+                        </div>
+
+                    </form>
+
+                    <hr />
+
+                    <a href="#" class="btn-facebook fullwidth radius3"><i class="fa fa-facebook"></i> Connect With Facebook</a>
+                    <a href="#" class="btn-twitter fullwidth radius3"><i class="fa fa-twitter"></i> Connect With Twitter</a>
+                    <a href="#" class="btn-google-plus fullwidth radius3"><i class="fa fa-google-plus"></i> Connect With Google</a>
+
+                    <p class="bottom-create-account">
+                        <a href="page-signup.html">Manual create account</a>
+                    </p>
+                </div>*@
+        </div>
+        <!-- /SIGN IN -->
+        <!-- CART MOBILE BUTTON -->
+        <a class="pull-right" id="btn-mobile-quick-cart" href="shop-cart.html"><i class="fa fa-shopping-cart"></i></a>
+        <!-- CART MOBILE BUTTON -->
+        <!-- LINKS -->
+        @*<div class="pull-right nav hidden-xs">
+            <a href="page-about-us.html"><i class="fa fa-angle-right"></i> About</a>
+            <a asp-controller="Home" asp-action="Contact"><i class="fa fa-angle-right"></i> Contact</a>
+        </div>*@
+        <!-- /LINKS -->
+
+    </div>
+</header>
+<!-- /Top Bar -->

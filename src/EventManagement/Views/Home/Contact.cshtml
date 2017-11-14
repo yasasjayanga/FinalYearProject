@@ -1,0 +1,159 @@
+﻿@model ContactViewModel
+@{
+    ViewData["Title"] = "Contact";
+}
+
+<div>
+
+    <header id="page-title">
+        <div class="container">
+            <h1>Contact Us</h1>
+
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li class="active">Contact Us</li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="container">
+        <div class="row">
+
+            <!-- FORM -->
+            <div class="col-md-8">
+
+                <h2>Drop us a line or just say <strong><em>Hello!</em></strong></h2>
+
+                <!--
+                    if you want to use your own contact script, remove .hide class
+                -->
+                <!-- SENT OK -->
+                <div id="_sent_ok_" class="alert alert-success fade in fsize16 hide">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <strong>Thank You!</strong> Your message successfully sent!
+                </div>
+                <!-- /SENT OK -->
+                <!-- SENT FAILED -->
+                <div id="_sent_required_" class="alert alert-danger fade in fsize16 hide">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <strong>Failed!</strong> Please complete all mandatory (*) fields!
+                </div>
+                <!-- /SENT FAILED -->
+
+                <form id="contactForm" class="white-row" asp-controller="Home" asp-action="Contact" method="post">
+                    @if (TempData["test"] != null && Convert.ToBoolean(TempData["test"]))
+                    {
+                        <div class="alert alert-success">
+                            <i class="fa fa-check-circle"></i>
+                            <strong>Query Submitted!</strong>
+                        </div>
+                    }
+                    @if (ViewBag.IsModelValid != null && !ViewBag.IsModelValid)
+                    {
+                        <div class="row alert alert-danger">
+                            <i class="fa fa-frown-o"></i>
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                        </div>
+                    }
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label>Full Name *</label>
+
+                                <input asp-for="FullName" typet="text" class="form-control" />
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label>E-mail Address *</label>
+                                <input asp-for="Email" typet="text" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Phone</label>
+                                <input asp-for="Phone" typet="text" class="form-control" />
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>Subject</label>
+                                <input asp-for="Subject" typet="text" class="form-control" />
+                                <span asp-validation-for="Subject" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>Message *</label>
+                                <textarea asp-for="Message" maxlength="5000" rows="10" class="form-control" id="contact_message"></textarea>
+                                <span asp-validation-for="Message" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input id="contact_submit" type="submit" value="Send Message" class="btn btn-primary btn-lg" data-loading-text="Loading...">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <!-- /FORM -->
+            <!-- INFO -->
+            <div class="col-md-4">
+
+                <h2>Visit Us</h2>
+
+                <p>
+                    Lid est laborum dolo rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats vitaes nemo minima rerums unsers sadips amets.
+                </p>
+
+                <div class="divider half-margins">
+                    <!-- divider -->
+                    <i class="fa fa-star"></i>
+                </div>
+
+                <p>
+                    <span class="block"><strong><i class="fa fa-map-marker"></i> Address:</strong> Street Name, City Name, Country</span>
+                    <span class="block"><strong><i class="fa fa-phone"></i> Phone:</strong> 1800-555-1234</span>
+                    <span class="block"><strong><i class="fa fa-envelope"></i> Email:</strong> <a href="mailto:mail@yourdomain.com">mail@yourdomain.com</a></span>
+                </p>
+
+                <div class="divider half-margins">
+                    <!-- divider -->
+                    <i class="fa fa-star"></i>
+                </div>
+
+                <h4 class="font300">Business Hours</h4>
+                <p>
+                    <span class="block"><strong>Monday - Friday:</strong> 10am to 6pm</span>
+                    <span class="block"><strong>Saturday:</strong> 10am to 2pm</span>
+                    <span class="block"><strong>Sunday:</strong> Closed</span>
+                </p>
+
+            </div>
+            <!-- /INFO -->
+
+        </div>
+    </section>
+</div>
+
+@*<address>
+        One Microsoft Way<br />
+        Redmond, WA 98052-6399<br />
+        <abbr title="Phone">P:</abbr>
+        425.555.0100
+    </address>
+
+    <address>
+        <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
+        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+    </address>*@
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

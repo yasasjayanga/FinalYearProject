@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="134fa1b6d405476b9100fbde42ad6080" Name="Diagram1">
+        <EntityTypeShape EntityType="EventManagementModel.AspNetRoleClaim" Width="1.5" PointX="0.75" PointY="13.5" />
+        <EntityTypeShape EntityType="EventManagementModel.AspNetRole" Width="1.5" PointX="0.75" PointY="10.875" />
+        <EntityTypeShape EntityType="EventManagementModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="6.75" />
+        <EntityTypeShape EntityType="EventManagementModel.AspNetUserLogin" Width="1.5" PointX="3" PointY="5.375" />
+        <EntityTypeShape EntityType="EventManagementModel.AspNetUser" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="EventManagementModel.AspNetUserToken" Width="1.5" PointX="0.75" PointY="8" />
+        <EntityTypeShape EntityType="EventManagementModel.Contact_Us" Width="1.5" PointX="0.625" PointY="5.375" />
+        <EntityTypeShape EntityType="EventManagementModel.Post" Width="1.5" PointX="5.25" PointY="9" />
+        <EntityTypeShape EntityType="EventManagementModel.Topic" Width="1.5" PointX="7.5" PointY="8.75" />
+        <EntityTypeShape EntityType="EventManagementModel.User" Width="1.5" PointX="3" PointY="13.5" />
+        <AssociationConnector Association="EventManagementModel.FK_AspNetRoleClaims_AspNetRoles_RoleId" />
+        <AssociationConnector Association="EventManagementModel.FK_AspNetUserClaims_AspNetUsers_UserId" />
+        <AssociationConnector Association="EventManagementModel.FK_AspNetUserLogins_AspNetUsers_UserId" />
+        <AssociationConnector Association="EventManagementModel.FK_Post_AspNetUsers" />
+        <AssociationConnector Association="EventManagementModel.FK_Topic_AspNetUsers" />
+        <AssociationConnector Association="EventManagementModel.FK_Users_Users" />
+        <AssociationConnector Association="EventManagementModel.FK_Post_Topic" />
+        <AssociationConnector Association="EventManagementModel.FK_Topic_Post" />
+        <AssociationConnector Association="EventManagementModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="EventManagementModel.Event" Width="1.5" PointX="5.25" PointY="12.75" />
+        <AssociationConnector Association="EventManagementModel.FK_Events_Users" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

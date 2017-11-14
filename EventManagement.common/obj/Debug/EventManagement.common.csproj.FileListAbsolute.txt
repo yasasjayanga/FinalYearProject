@@ -1,0 +1,21 @@
+C:\Users\Lion\Desktop\Project V3\EventManagement.common\bin\Debug\EventManagement.common.exe.config
+C:\Users\Lion\Desktop\Project V3\EventManagement.common\bin\Debug\EventManagement.common.exe
+C:\Users\Lion\Desktop\Project V3\EventManagement.common\bin\Debug\EventManagement.common.pdb
+C:\Users\Lion\Desktop\Project V3\EventManagement.common\bin\Debug\EventManagement.data.exe
+C:\Users\Lion\Desktop\Project V3\EventManagement.common\bin\Debug\EntityFramework.dll
+C:\Users\Lion\Desktop\Project V3\EventManagement.common\bin\Debug\EventManagement.data.pdb
+C:\Users\Lion\Desktop\Project V3\EventManagement.common\bin\Debug\EntityFramework.xml
+C:\Users\Lion\Desktop\Project V3\EventManagement.common\obj\Debug\EventManagement.common.csprojResolveAssemblyReference.cache
+C:\Users\Lion\Desktop\Project V3\EventManagement.common\obj\Debug\EventManagement.common.exe
+C:\Users\Lion\Desktop\Project V3\EventManagement.common\obj\Debug\EventManagement.common.pdb
+C:\Users\Lion\Desktop\Project V3\EventManagement.common\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+F:\Working Finalllllllllll\Project V3\EventManagement.common\bin\Debug\EventManagement.common.exe.config
+F:\Working Finalllllllllll\Project V3\EventManagement.common\bin\Debug\EventManagement.common.exe
+F:\Working Finalllllllllll\Project V3\EventManagement.common\bin\Debug\EventManagement.common.pdb
+F:\Working Finalllllllllll\Project V3\EventManagement.common\bin\Debug\EventManagement.data.exe
+F:\Working Finalllllllllll\Project V3\EventManagement.common\bin\Debug\EntityFramework.dll
+F:\Working Finalllllllllll\Project V3\EventManagement.common\bin\Debug\EventManagement.data.pdb
+F:\Working Finalllllllllll\Project V3\EventManagement.common\bin\Debug\EntityFramework.xml
+F:\Working Finalllllllllll\Project V3\EventManagement.common\obj\Debug\EventManagement.common.csprojResolveAssemblyReference.cache
+F:\Working Finalllllllllll\Project V3\EventManagement.common\obj\Debug\EventManagement.common.exe
+F:\Working Finalllllllllll\Project V3\EventManagement.common\obj\Debug\EventManagement.common.pdb

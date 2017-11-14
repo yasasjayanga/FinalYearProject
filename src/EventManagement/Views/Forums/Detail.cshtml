@@ -1,0 +1,138 @@
+﻿
+@model TopicDetailView_Model
+@{
+    // Email subscription
+    var subScribe = string.Empty;
+    var unSubscribe = string.Empty;
+    const string displayNone = "style='display:none;'";
+    if (Model.IsSubscribed)
+    {
+        subScribe = displayNone;
+    }
+    else
+    {
+        unSubscribe = displayNone;
+    }
+
+    var loggedOnUserId = User.Identity.Name;
+}
+
+<header id="page-title">
+    <div class="container">
+        <h1>Forums Detail</h1>
+
+        <ul class="breadcrumb">
+            <li><a asp-controller="Forums" asp-action="Index">Home</a></li>
+            <li class="active">Forums Detail</li>
+        </ul>
+    </div>
+</header>
+
+<div style="clear:both;"></div>
+
+<div id="blog">
+    <section class="container">
+        <div class="item" style="padding-bottom:20px;">
+
+            <div class="item-title">
+                <h2><a href="javascript:void(0)">@Html.Raw(Model.Topic.Name)</a></h2>
+            </div>
+            <div style="position:relative;">
+                <div class="item-date">
+                    @Model.StarterPost.Post.DateCreated.Day <span>@Model.StarterPost.Post.DateCreated.ToString("MMM")</span>
+                </div>
+                <div style="min-height:72px;padding:0; padding-left:72px;">
+                    @Html.Raw(Model.StarterPost.Post.PostContent)
+                </div>
+            </div>
+            @if (User.Identity.IsAuthenticated && Model.StarterPost.Post.AspNetUser.UserName == loggedOnUserId)
+            {
+                <div style="float: right;">
+                    <a class="btn btn-default" href="/Forums/Edit/@Model.StarterPost.Post.Id" title="EDIT">
+                        Edit
+                    </a>
+                    <a class="btn btn-default" onclick="return confirm('DeleteConfirmation')" href="/Forums/DeletePost/@Model.StarterPost.Post.Topic_Id?postId=@Model.StarterPost.Post.Id" title="DELETE">
+                        Delete
+                    </a>
+
+                </div>
+            }
+            else if (Model.Topic.Solved)
+            {
+                <div style="float:right">Closed</div>
+            }
+            <span style="margin-left:72px;" class="label label-default light">
+                @Html.Raw(Model.StarterPost.Post.AspNetUser.UserName)
+                Posted This
+                @DatesUI.GetPrettyDate(Model.StarterPost.Post.DateCreated.ToString())
+            </span>
+            @if (Model.StarterPost.Post.DateEdited > Model.StarterPost.Post.DateCreated)
+            {
+                <span class="label label-default light">LastEdited  @DatesUI.GetPrettyDate(Model.StarterPost.Post.DateEdited.ToString())</span>
+            }
+
+            <div class="clearfix"></div>
+            <div style="text-align:center;">
+                <a href="blog-single-sidebar-left.html" class="btn btn-xs">
+                    <i class="fa fa-sign-out"></i>
+                    <span class="postCount">@(Model.Posts.Count)</span> COMMENTS
+                </a>
+            </div>
+        </div>
+
+        @if (Model.Posts.Count() > 0)
+        {
+            <div class="col-md-2">
+                <i class="fa fa-sign-out" style="font-size:160px;"></i>
+            </div>
+            <div class="col-md-10">
+                @foreach (var post in Model.Posts)
+                {
+                    Html.RenderPartial("_Post", post);
+                    <div class="divider styleColor">
+                        <!-- divider -->
+                        <i class="fa fa-leaf"></i>
+                    </div>
+                }
+            </div>
+        }
+        @if (User.Identity.IsAuthenticated && !Model.Topic.Solved)
+        {
+            @Html.Partial("_CreateNewPost", new CreateAjaxPostViewModel { Topic = Model.Topic.Id, DisablePosting = Model.DisablePosting, PostContent = Model.QuotedPost })
+        }
+    </section>
+</div>
+
+<style>
+    .nicdark_margintop45_negative {
+        margin-top: 140px !important;
+    }
+
+    .item-date {
+        position: absolute;
+        background: #fff;
+        color: #333;
+        font-size: 20px;
+        text-align: center;
+        top: 0;
+        padding-top: 6px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+    }
+
+        .item-date span {
+            color: #fff;
+            display: block;
+            background-color: #F07057;
+            padding: 3px 10px 6px 10px;
+            margin-top: 6px;
+            -webkit-border-bottom-right-radius: 6px;
+            -webkit-border-bottom-left-radius: 6px;
+            -moz-border-radius-bottomright: 6px;
+            -moz-border-radius-bottomleft: 6px;
+            border-bottom-right-radius: 6px;
+            border-bottom-left-radius: 6px;
+        }
+</style>
+<link href="~/css/blog.css" rel="stylesheet" />

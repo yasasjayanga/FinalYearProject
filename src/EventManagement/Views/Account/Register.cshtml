@@ -1,0 +1,220 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+@*<h2>@ViewData["Title"].</h2>*@
+
+<div id="shop">
+
+    <!-- PAGE TITLE -->
+    <header id="page-title">
+        <div class="container">
+            <h1>Sign UP</h1>
+
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li class="active">Sign UP</li>
+            </ul>
+        </div>
+    </header>
+
+
+    <section class="container">
+
+        <div class="row">
+
+            <!-- LOGIN -->
+            <div class="col-md-offset-1 col-md-10">
+                <form asp-controller="Account" enctype="multipart/form-data" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="white-row">
+
+                    <h2>Sign <strong>UP</strong></h2>
+
+                    @if (ViewBag.IsModelValid != null && !ViewBag.IsModelValid)
+                    {
+                        <div class="row alert alert-danger">
+                            <i class="fa fa-frown-o"></i>
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                        </div>
+                    }
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>E-mail Address</label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>User Name</label>
+                                <input asp-for="UserName" class="form-control" />
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input asp-for="Password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Confirm Password</label>
+                                <input asp-for="ConfirmPassword" class="form-control" />
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input asp-for="FirstName" class="form-control" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input asp-for="LastName" class="form-control" />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Contact Number</label>
+                                <input asp-for="ContactNumber" class="form-control" />
+                                <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <div>
+                                    <input type="radio" asp-for="Gender" value="0" /> &nbsp;&nbsp; Male
+                                    <input type="radio" asp-for="Gender" value="1" /> &nbsp;&nbsp; Female
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea asp-for="Address" class="form-control"></textarea>
+                                <span asp-validation-for="Address" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input asp-for="City" class="form-control" />
+                                <span asp-validation-for="City" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <select asp-for="Country" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="1">U.S.A</option>
+                                </select>
+                                <span asp-validation-for="Country" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Profile Pic</label>
+                                <input id="profile-file" type="file" name="file" value="" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <img id="profilePic" src="http://library.unn.edu.ng/wp-content/uploads/sites/42/2016/03/prifile-pic.png" style="width:200px;" alt="profile-pic" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary pull-right push-bottom">Sign Up</button>
+                        </div>
+                    </div>
+                </form>
+                <p class="white-row">
+                    Already have an account? <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Sign In</a>
+                </p>
+            </div>
+            <!-- /LOGIN -->
+
+        </div>
+
+    </section>
+
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script>
+        $(function () {
+            $('#profile-file').change(function (e) {
+                readURL(this);
+            });
+        });
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#profilePic').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}
+
+<style>
+    .validation-summary-errors {
+        float: left;
+    }
+
+    .alert .fa {
+        float: left;
+    }
+
+    .alert {
+        margin: 0;
+        margin-bottom: 18px;
+    }
+
+    .validation-summary-errors ul {
+        margin: 0;
+        list-style-type: none;
+    }
+
+        .validation-summary-errors ul li {
+            color: #a94442;
+        }
+</style>

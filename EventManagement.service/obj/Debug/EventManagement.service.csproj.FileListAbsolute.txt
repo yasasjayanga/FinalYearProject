@@ -1,0 +1,22 @@
+C:\Users\Lion\Desktop\Project V3\EventManagement.service\obj\Debug\EventManagement.service.csprojResolveAssemblyReference.cache
+C:\Users\Lion\Desktop\Project V3\EventManagement.service\bin\Debug\EventManagement.service.exe.config
+C:\Users\Lion\Desktop\Project V3\EventManagement.service\bin\Debug\EventManagement.service.exe
+C:\Users\Lion\Desktop\Project V3\EventManagement.service\bin\Debug\EventManagement.service.pdb
+C:\Users\Lion\Desktop\Project V3\EventManagement.service\bin\Debug\EventManagement.common.exe
+C:\Users\Lion\Desktop\Project V3\EventManagement.service\bin\Debug\EventManagement.data.exe
+C:\Users\Lion\Desktop\Project V3\EventManagement.service\bin\Debug\HtmlAgilityPack.dll
+C:\Users\Lion\Desktop\Project V3\EventManagement.service\bin\Debug\EventManagement.common.pdb
+C:\Users\Lion\Desktop\Project V3\EventManagement.service\bin\Debug\EventManagement.data.pdb
+C:\Users\Lion\Desktop\Project V3\EventManagement.service\obj\Debug\EventManagement.service.exe
+C:\Users\Lion\Desktop\Project V3\EventManagement.service\obj\Debug\EventManagement.service.pdb
+F:\Working Finalllllllllll\Project V3\EventManagement.service\bin\Debug\EventManagement.service.exe.config
+F:\Working Finalllllllllll\Project V3\EventManagement.service\bin\Debug\EventManagement.service.exe
+F:\Working Finalllllllllll\Project V3\EventManagement.service\bin\Debug\EventManagement.service.pdb
+F:\Working Finalllllllllll\Project V3\EventManagement.service\bin\Debug\EventManagement.common.exe
+F:\Working Finalllllllllll\Project V3\EventManagement.service\bin\Debug\EventManagement.data.exe
+F:\Working Finalllllllllll\Project V3\EventManagement.service\bin\Debug\HtmlAgilityPack.dll
+F:\Working Finalllllllllll\Project V3\EventManagement.service\bin\Debug\EventManagement.common.pdb
+F:\Working Finalllllllllll\Project V3\EventManagement.service\bin\Debug\EventManagement.data.pdb
+F:\Working Finalllllllllll\Project V3\EventManagement.service\obj\Debug\EventManagement.service.csprojResolveAssemblyReference.cache
+F:\Working Finalllllllllll\Project V3\EventManagement.service\obj\Debug\EventManagement.service.exe
+F:\Working Finalllllllllll\Project V3\EventManagement.service\obj\Debug\EventManagement.service.pdb

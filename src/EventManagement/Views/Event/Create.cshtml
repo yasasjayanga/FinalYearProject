@@ -1,0 +1,229 @@
+﻿@model EventModel
+@{
+    ViewData["Title"] = "Create Event";
+}
+
+
+<div id="shop">
+
+    <!-- PAGE TITLE -->
+    <header id="page-title">
+        <div class="container">
+            <h1>Create Events</h1>
+
+            <ul class="breadcrumb">
+                <li><a href="index.html">Event</a></li>
+                <li class="active">Create Event</li>
+            </ul>
+        </div>
+    </header>
+    <section class="container">
+        <form asp-controller="Event" enctype="multipart/form-data" asp-action="Create" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="white-row">
+            @Html.Partial("_CreateEditEvents", Model)
+            @*<div class="row white-row">
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @{
+                                        var profilepic = "http://library.unn.edu.ng/wp-content/uploads/sites/42/2016/03/prifile-pic.png";
+                                        if (!string.IsNullOrEmpty(Model.Poster))
+                                        {
+                                            profilepic = "/uploads/" + Model.Poster;
+                                        }
+                                    }
+
+                                    <img id="profilePic" src="@profilepic" style="width:200px;" alt="profile-pic" />
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input id="profile-file" type="file" name="file" value="" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-9">
+
+
+                        <h2>Create <strong>Event</strong></h2>
+
+                        @if (ViewBag.IsModelValid != null && !ViewBag.IsModelValid)
+                {
+                            <div class="row alert alert-danger">
+                                <i class="fa fa-frown-o"></i>
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                            </div>
+                        }
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Event Number</label>
+                                    <input asp-for="Number" class="form-control" readonly />
+                                    <span asp-validation-for="Number" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Event Type</label>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <select id="type" asp-for="Type" class="form-control col-md-6">
+                                                <option value="">Select</option>
+                                                <option value="2">Commercial</option>
+                                                <option value="1">Non-commercial</option>
+                                            </select>
+                                            <span asp-validation-for="Type" class="text-danger"></span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input asp-for="Tickets" class="form-control" />
+                                            <span asp-validation-for="Tickets" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Event Name</label>
+                                    <input asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Event Date</label>
+                                    <input asp-for="Date" class="form-control" />
+                                    <span asp-validation-for="Date" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Venue</label>
+                                    <input asp-for="Venue" class="form-control" />
+                                    <span asp-validation-for="Venue" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" asp-for="Description"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary pull-right push-bottom">Create Event</button>
+                                    <a asp-controller="Event" asp-action="Index" class="btn btn-default">content</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>*@
+        </form>
+    </section>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script>
+        $(function () {
+            $(".form_datetime").datetimepicker({
+                format: 'mm/dd/yyyy HH:ii p',
+                forceParse: true,
+                autoclose: 1
+            });
+            $('#type').change(function () {
+                if ($(this).val() != '') {
+                    if ($(this).val() == 1) {
+                        $('#Tickets').val(1).hide();
+                        $('.lbl-price').hide();
+                    }
+                    else {
+                        $('#Tickets').val(1).show();
+                        $('.lbl-price').show();
+                    }
+
+                }
+            });
+        });
+
+        $('#profile-file').change(function (e) {
+            readURL(this);
+        });
+
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#profilePic').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        //function DeleteUser(userId) {
+        //    if (confirm("Do you want to delete selected event?")) {
+        //        location.href = "/Admin/DeleteEvent/" + userId;
+        //    }
+        //}
+
+        //function GetUserEventInfo(userId, eventId) {
+        //    $.get("/Event/GetEventById", { eventId: eventId }, function (event_result) {
+        //        //1: Pending, 2: Approve, 3: Disapprove
+        //        event_result.Type = getEventType(event_result.Type);
+        //        event_result.Status = getstatus(event_result.Status);
+        //        $(".user-modal").loadTemplate('/templates/event_detail.html', (event_result));
+        //        $('#myModal').modal('show');
+        //    });
+        //}
+
+        //function getEventType(status) {
+        //    //1: Non-commercial 2: Commercial
+        //    if (status == 1) {
+        //        return 'Non-commercial';
+        //    }
+        //    if (status == 2) {
+        //        return 'Commercial';
+        //    }
+        //}
+
+        //function getstatus(status) {
+        //    //1: Pending, 2: Approve, 3: Disapprove
+        //    if (status == 1) {
+        //        return 'Pending';
+        //    }
+        //    if (status == 2) {
+        //        return 'Approved';
+        //    }
+        //    if (status == 3) {
+        //        return 'Disapproved';
+        //    }
+        //}
+
+        //function extend(obj, src) {
+        //    for (var key in src) {
+        //        if (src.hasOwnProperty(key)) obj[key] = src[key];
+        //    }
+        //    return obj;
+        //}
+
+        //function UpdateEventStatus() {
+        //    var eventId = $('#Popup-EventId').val();
+        //    $.post("/Admin/UpdateEventStatus", { status: $('#Popup-Status').val(), eventId: eventId, comment: $('#Popup-Description').val() }, function (result) {
+        //        $('#row-' + eventId).find('td .status').html((result == 2) ? 'Approved' : 'Disapproved');
+        //        $('#StatusModal').modal('hide');
+        //    });
+        //}
+    </script>
+}

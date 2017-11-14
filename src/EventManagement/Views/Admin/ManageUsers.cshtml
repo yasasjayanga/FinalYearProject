@@ -1,0 +1,76 @@
+﻿@model IEnumerable<RegisterViewModel>
+@{
+    ViewData["Title"] = "Manage Users";
+}
+
+
+<div id="shop">
+
+    <!-- PAGE TITLE -->
+    <header id="page-title">
+        <div class="container">
+            <h1>Manage Users</h1>
+
+            <ul class="breadcrumb">
+                <li><a href="index.html">Admin</a></li>
+                <li class="active">Manage Users</li>
+            </ul>
+        </div>
+    </header>
+
+
+    <div class="col-md-offset-2 col-md-8">
+        <table id="UserTable" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <td>First Name</td>
+                    <td>Last Name</td>
+                    <td>User Name</td>
+                    <td>Email</td>
+                    <td>Gender</td>
+                    <td>Contact Number</td>
+                    <td>Address</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tbody>
+                    <tr>
+                        <td>@item.FirstName</td>
+                        <td>@item.LastName</td>
+                        <td>@item.UserName</td>
+                        <td>@item.Email</td>
+                        <td>
+                            @{
+                                var gender = item.Gender == 0 ? "Male" : "Female";
+                            }
+                            @gender
+                        </td>
+                        <td>@item.ContactNumber</td>
+                        <td>@item.Address</td>
+                        <td>
+                            <input id="@item.Id" type="button" class="btn btn-sm btn-danger" value="Delete" onclick="DeleteUser('@item.Id')" />
+                        </td>
+                    </tr>
+                </tbody>
+                                }
+        </table>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script>
+        $(function () {
+            $('#UserTable').DataTable();
+        });
+        function DeleteUser(userId) {
+            //alert(userId);
+            if (confirm("Do you want to delete selected user?")) {
+                location.href = "/Admin/DeleteUser/" + userId;
+            }
+        }
+    </script>
+}

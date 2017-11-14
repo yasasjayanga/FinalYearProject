@@ -1,0 +1,97 @@
+﻿@model  IEnumerable<EventManagement.Models.TopicView_Model>
+@{
+    ViewBag.Title = "Latest Discussions";
+}
+
+
+<header id="page-title">
+    <div class="container">
+        <h1>Forums</h1>
+
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Forums</li>
+        </ul>
+    </div>
+</header>
+
+<div id="blog">
+
+    <section class="container">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="createtopicbutton">
+                <a href="@Url.Action("Create", "Forums")" class="btn btn-default">
+                    New Discussion
+                </a>
+            </div>
+            <hr style="margin:16px 0;" />
+        }
+        @foreach (var topic in Model.ToList())
+            {
+            <div class="item">
+
+                <div class="item-title">
+                    <h2><a href="/Forums/Detail/@topic.Id">@Html.Raw(topic.Name)</a></h2>
+
+                    <span class="label label-default light"> Craeted By : @topic.AspNetUser.UserName</span>
+                    <span class="label label-default light">Craeted On : @DatesUI.GetPrettyDate(topic.CreateDate.ToString())</span>
+                </div>
+
+                <div style="position:relative;">
+                    <div class="item-date">
+                        @topic.Post.DateCreated.Day <span>@topic.Post.DateCreated.ToString("MMM")</span>
+                    </div>
+                    <div style="min-height:72px;padding:0; padding-left:72px;">
+                        @Html.Raw(topic.Post.PostContent)
+                    </div>
+                </div>
+
+                <a style="margin-left:60px;" href="/Forums/Detail/@topic.Id" class="btn btn-xs"><i class="fa fa-sign-out"></i> READ MORE</a>
+
+                @if (topic.Solved)
+                {
+                    <span class="glyphicon glyphicon-ok green-colour" aria-hidden="true"></span> <span> Solved</span>
+                }
+
+            </div>
+        }
+    </section>
+
+</div>
+
+<link href="~/css/blog.css" rel="stylesheet" />
+
+<style>
+    #blog .item {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+    }
+
+    .item-date {
+        position: absolute;
+        background: #fff;
+        color: #333;
+        font-size: 20px;
+        text-align: center;
+        top: 0;
+        padding-top: 6px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+    }
+
+        .item-date span {
+            color: #fff;
+            display: block;
+            background-color: #F07057;
+            padding: 3px 10px 6px 10px;
+            margin-top: 6px;
+            -webkit-border-bottom-right-radius: 6px;
+            -webkit-border-bottom-left-radius: 6px;
+            -moz-border-radius-bottomright: 6px;
+            -moz-border-radius-bottomleft: 6px;
+            border-bottom-right-radius: 6px;
+            border-bottom-left-radius: 6px;
+        }
+</style>

@@ -1,0 +1,122 @@
+﻿@model CreateEditTopicView_Model
+
+@Html.HiddenFor(m => m.IsTopicStarter)
+
+<div class="row white-row">
+
+    <div class="col-md-12">
+
+
+        <h2>Create <strong>Forum</strong></h2>
+
+        @if (ViewBag.IsModelValid != null && !ViewBag.IsModelValid)
+        {
+            <div class="row alert alert-danger">
+                <i class="fa fa-frown-o"></i>
+                <div asp-validation-summary="All" class="text-danger"></div>
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Content</label>
+                    <textarea class="form-control" asp-for="Content" rows="6"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary push-bottom">
+                        <span class="white">Submit</span>
+                    </button>
+                    @if (Model == null || Model.TopicId == 0)
+                    {
+                        <a href="/Forums" class="btn btn-default">Back</a>
+                    }
+                    else
+                    {
+                        <a href="/Forums/Detail/@Model.TopicId" class="btn btn-default">Back</a>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*<div class="nicdark_space20"></div>
+    <div class="paddedrow topicname">
+        <div class="form-group">
+            <b>Title</b>
+            <div class="nicdark_space10"></div>
+
+            @if (Model.IsTopicStarter)
+            {
+                @Html.TextBoxFor(model => model.Name, new { @class = "createtopicname nicdark_bg_grey2 nicdark_radius nicdark_shadow grey small subtitle" })
+            }
+            else
+            {
+                @Html.HiddenFor(m => m.Name)
+                <input type="text" value="@Model.Name" class="createtopicname nicdark_bg_grey2 nicdark_radius nicdark_shadow grey small subtitle" disabled>
+            }
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+    </div>
+
+    <div style="clear:both"></div>
+    <br />
+    <div class="row">
+        <div class="col-md-12 topiccontent">
+            <div class="editor-field editorholder form-group">
+                <b>Content</b>
+                <div class="nicdark_space10"></div>
+                <div style="clear:both;"></div>
+                @Html.TextAreaFor(model => model.Content, new { @class = "nicdark_bg_grey2 nicdark_radius nicdark_shadow grey small subtitle" })
+                @Html.ValidationMessageFor(model => model.Content)
+            </div>
+        </div>
+    </div>
+
+    <div style="clear:both"></div>
+    <br />
+    <div class="row">
+        <div class="col-md-6 createtopicbuttonholder">
+            <div class="submit-holder">
+                <button type="submit" class="nicdark_btn nicdark_bg_yellow medium nicdark_shadow nicdark_radius" style="border:0;">
+                    @if (Model.Id == 0)
+                    {
+                        <span class="white">Create Discussion</span>
+                    }
+                    else
+                    {
+                        <span class="white">Edit</span>
+                    }
+                </button>
+                @if (Model == null || Model.TopicId == 0)
+                {
+                    <a href="/Forums" class="nicdark_btn nicdark_bg_yellow medium nicdark_shadow nicdark_radius white">Back</a>
+                }
+                else
+                {
+                    <a href="/Forums/Detail/@Model.TopicId" class="nicdark_btn nicdark_bg_yellow medium nicdark_shadow nicdark_radius white">Back</a>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div style="clear:both"></div>
+    <br />*@

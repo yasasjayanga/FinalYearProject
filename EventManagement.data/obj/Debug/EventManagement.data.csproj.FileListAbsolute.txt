@@ -1,0 +1,16 @@
+C:\Users\Lion\Desktop\Project V3\EventManagement.data\bin\Debug\EventManagement.data.exe.config
+C:\Users\Lion\Desktop\Project V3\EventManagement.data\bin\Debug\EventManagement.data.exe
+C:\Users\Lion\Desktop\Project V3\EventManagement.data\bin\Debug\EventManagement.data.pdb
+C:\Users\Lion\Desktop\Project V3\EventManagement.data\bin\Debug\EntityFramework.dll
+C:\Users\Lion\Desktop\Project V3\EventManagement.data\bin\Debug\EntityFramework.xml
+C:\Users\Lion\Desktop\Project V3\EventManagement.data\obj\Debug\EventManagement.data.exe
+C:\Users\Lion\Desktop\Project V3\EventManagement.data\obj\Debug\EventManagement.data.pdb
+C:\Users\Lion\Desktop\Project V3\EventManagement.data\obj\Debug\EventManagement.data.csprojResolveAssemblyReference.cache
+F:\Working Finalllllllllll\Project V3\EventManagement.data\bin\Debug\EventManagement.data.exe.config
+F:\Working Finalllllllllll\Project V3\EventManagement.data\bin\Debug\EventManagement.data.exe
+F:\Working Finalllllllllll\Project V3\EventManagement.data\bin\Debug\EventManagement.data.pdb
+F:\Working Finalllllllllll\Project V3\EventManagement.data\bin\Debug\EntityFramework.dll
+F:\Working Finalllllllllll\Project V3\EventManagement.data\bin\Debug\EntityFramework.xml
+F:\Working Finalllllllllll\Project V3\EventManagement.data\obj\Debug\EventManagement.data.csprojResolveAssemblyReference.cache
+F:\Working Finalllllllllll\Project V3\EventManagement.data\obj\Debug\EventManagement.data.exe
+F:\Working Finalllllllllll\Project V3\EventManagement.data\obj\Debug\EventManagement.data.pdb

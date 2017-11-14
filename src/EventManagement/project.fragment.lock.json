@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "exports": {
+    "EventManagement.common/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.5.1",
+      "compile": {
+        "bin/Debug/EventManagement.common.exe": {}
+      },
+      "runtime": {
+        "bin/Debug/EventManagement.common.exe": {},
+        "bin/Debug/HtmlAgilityPack.dll": {},
+        "bin/Debug/Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll": {}
+      }
+    },
+    "EventManagement.data/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.5.1",
+      "compile": {
+        "bin/Debug/EventManagement.data.exe": {}
+      },
+      "runtime": {
+        "../packages/EntityFramework.5.0.0/lib/net45/EntityFramework.dll": {},
+        "bin/Debug/EventManagement.data.exe": {}
+      }
+    },
+    "EventManagement.service/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.5.1",
+      "compile": {
+        "bin/Debug/EventManagement.service.exe": {}
+      },
+      "runtime": {
+        "bin/Debug/EntityFramework.dll": {},
+        "bin/Debug/EventManagement.service.exe": {}
+      }
+    }
+  }
+}
